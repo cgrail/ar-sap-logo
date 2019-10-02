@@ -5,34 +5,46 @@
     <title>Augmented Reality SAP Logo</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- Loads <model-viewer> for modern browsers: -->
     <script type="module"
             src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js">
             </script>
-
-    <!-- Loads <model-viewer> for old browsers like IE11: -->
     <script nomodule
             src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js">
             </script>
+    <script id="sap-ui-bootstrap"
+            src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+            data-sap-ui-theme="sap_belize"
+            data-sap-ui-libs="sap.m, sap.ui.layout"
+            data-sap-ui-resourceroots='{"3DView": "./"}'
+            data-sap-ui-async="true">
+            </script>
 </head>
 
-<body>
+<body class="sapUiBody"
+      id="content">
     <style>
         model-viewer {
             width: 100%;
-            height: 500px;
+            height: calc(100vh - 150px);
+        }
+
+        @media only screen and (min-width: 600px) {
+            model-viewer {
+                height: calc(100vh - 50px);
+            }
         }
     </style>
-
-    SAP Logo
-
-    <model-viewer src="assets/SAP_Logo.gltf"
-                  ios-src="assets/SAP_Logo.usdz"
-                  alt="A 3D model of an astronaut"
-                  camera-controls
-                  interaction-prompt="auto"
-                  auto-rotate
-                  ar></model-viewer>
+    <script>
+        sap.ui.getCore().attachInit(function () {
+            sap.ui.require([
+                "sap/ui/core/mvc/XMLView"
+            ], function (XMLView) {
+                XMLView.create({ viewName: "3DView.App" }).then(function (oView) {
+                    oView.placeAt("content");
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

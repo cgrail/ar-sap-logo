@@ -1,0 +1,13 @@
+<mvc:View displayBlock="true" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:control="3DView" 
+    xmlns="sap.m">
+    <App id="app">
+        <Page title="SAP 3D Logo">
+            <control:ArView id="arView" 
+                src="assets/SAP_Logo.gltf" 
+                iosSrc="assets/SAP_Logo.usdz" 
+                alt="SAP Logo" />
+        </Page>
+    </App>
+</mvc:View>
